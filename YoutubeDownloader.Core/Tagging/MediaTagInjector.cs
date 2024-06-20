@@ -66,8 +66,23 @@ public class MediaTagInjector
         CancellationToken cancellationToken = default
     )
     {
+        /*
         var thumbnailUrl =
             video
+                .Thumbnails.Where(t =>
+                    string.Equals(t.TryGetImageFormat(), "jpg", StringComparison.OrdinalIgnoreCase)
+                )
+                .OrderByDescending(t => t.Resolution.Area)
+                .Select(t => t.Url)
+                .FirstOrDefault() ?? $"https://i.ytimg.com/vi/{video.Id}/hqdefault.jpg";
+        */
+        var thumbnailUrl = video.Thumbnails.Any(t =>
+            t.Resolution.Width == 1920
+            && t.Resolution.Height == 1080
+            && string.Equals(t.TryGetImageFormat(), "webp", StringComparison.OrdinalIgnoreCase)
+        )
+            ? $"https://i.ytimg.com/vi/{video.Id}/maxresdefault.jpg"
+            : video
                 .Thumbnails.Where(t =>
                     string.Equals(t.TryGetImageFormat(), "jpg", StringComparison.OrdinalIgnoreCase)
                 )
