@@ -5,8 +5,11 @@
     xmlns:dialogs="clr-namespace:YoutubeDownloader.ViewModels.Dialogs"
     xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
     Height="450"
-    MinWidth="450"
-    x:DataType="dialogs:AuthSetupViewModel">
+    MinWidth="450">
+    <Design.DataContext>
+        <dialogs:AuthSetupViewModel />
+    </Design.DataContext>
+
     <Grid RowDefinitions="Auto,*,Auto">
         <!--  Title  -->
         <TextBlock
