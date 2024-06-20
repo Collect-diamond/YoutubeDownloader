@@ -83,7 +83,7 @@ public class MediaTagInjector
         */
         var thumbnailUrl = $"https://i.ytimg.com/vi/{video.Id}/maxresdefault.jpg";
 
-		mediaFile.SetThumbnail(
+        mediaFile.SetThumbnail(
             await Http.Client.GetByteArrayAsync(thumbnailUrl, cancellationToken)
         );
     }
